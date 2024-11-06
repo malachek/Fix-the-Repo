@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] ScoreBoard scoreBoard;
 
+    [SerializeField] EnemySpawner enemySpawner;
+
     private void Awake()
     {
         
@@ -36,11 +38,16 @@ public class PlayerController : MonoBehaviour
     {
         this.gameObject.transform.position = GameObject.FindGameObjectWithTag("Home").transform.position;
         scoreBoard.Score();
+
+        enemySpawner.NewRound();
     }
 
     private void PlayerHit()
     {
-        //GameOver();
+        this.gameObject.transform.position = GameObject.FindGameObjectWithTag("Home").transform.position;
+        scoreBoard.GameOver();
+
+        enemySpawner.NewRound();
     }
 
     private void Movement()
